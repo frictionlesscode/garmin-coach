@@ -1,0 +1,23 @@
+{
+  "skill_name": "garmin-coach",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm running an upper/lower split and today's a heavy lower day. My program says drop to RPE 7 if my sleep score is under 70, or if HRV is more than 5ms below my weekly average. Should I adjust today?",
+      "expected_output": "Calls get_readiness(). Applies the user's stated rule literally using the real sleep_score and hrv_ms/hrv_7d_baseline fields. Explicitly flags that hrv_7d_baseline is null (not yet available) so that leg of the rule can't be evaluated, rather than guessing or silently ignoring it. Reaches a conclusion using only the sleep_score leg, which is evaluable.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I'm cutting for a wedding in 6 weeks, need to be around 185lb by then, started at 200. How's it looking?",
+      "expected_output": "Calls get_body_trend() with a range covering the cut. Reports the actual avg_7d/avg_28d and trend_lb_per_week honestly, compares the real trend rate against the rate required to hit 185 in 6 weeks, and does not default to reassurance ('looking good!') if the numbers don't support it.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "what have I been doing for cardio the last two weeks, my coach wants a summary",
+      "expected_output": "Recognizes 'cardio' isn't a literal Garmin activity_type value, so calls get_activities(days=14) without an invalid type filter, then filters/summarizes by the real returned types (e.g. walking, hiking) sensibly, excluding non-cardio types like strength_training rather than passing 'cardio' as activity_type directly.",
+      "files": []
+    }
+  ]
+}
