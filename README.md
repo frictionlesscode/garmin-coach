@@ -1,5 +1,7 @@
 # garmin-coach
 
+> **Unofficial and unaffiliated.** Not affiliated with or endorsed by Garmin. This is a documentation-only Claude Skill — it ships no code that touches your account and makes no network calls of its own.
+
 A Claude Skill that teaches Claude how to correctly read and reason about data from [garmin-mcp](https://github.com/frictionlesscode/garmin-mcp) — a companion MCP server exposing a Garmin Connect account's activities, sleep, HRV, body-weight trend, and more.
 
 This skill is deliberately **just the "how to read the data" layer** — which tool answers which question, what each field's units and `null`s mean, which numbers are directly comparable and which aren't (e.g. HR zone minutes across a zone-config change). It contains **no training philosophy, thresholds, or programming rules of its own.** Your training plan lives in the conversation with Claude, not baked into this skill — see "The one rule that matters" in [SKILL.md](SKILL.md).
